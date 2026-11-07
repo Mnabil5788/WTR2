@@ -1,0 +1,30 @@
+name: Build APK
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-java@v4
+        with:
+          distribution: microsoft
+          java-version: 17
+      - name: Install the MAUI Android workload
+        run: dotnet workload install maui-android
+      - name: Put the Supabase settings in Config.cs
+        run: |
+          sed -i "s|https://YOUR-PROJECT.supabase.co|${{ secrets.SUPABASE_URL }}|" Config.cs
+          sed -i "s|YOUR-ANON-KEY|${{ secrets.SUPABASE_ANON_KEY }}|" Config.cs
+      - name: Build the APK
+        run: dotnet publish WtrMobile.csproj -f net8.0-android -c Release -o out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WtrDC-apk
+          path: out/*.apk
