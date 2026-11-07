@@ -13,7 +13,7 @@ public sealed class EntryPage : ContentPage
 
     readonly ProjectDef _p;
     readonly SupabaseApi _api = SupabaseApi.I;
-    readonly Entry _term = new() { Placeholder = "DOC NO. or REF", ClearButtonVisibility = ClearButtonVisibility.WhileEditing, AutoCapitalize = false };
+    readonly Entry _term = new() { Placeholder = "DOC NO. or REF", ClearButtonVisibility = ClearButtonVisibility.WhileEditing, Keyboard = Keyboard.Plain };
     readonly Entry _date = new() { Placeholder = "5-Nov-26" };
     readonly Label _count = new() { Text = "0", FontSize = 22, FontAttributes = FontAttributes.Bold, TextColor = Ink, VerticalOptions = LayoutOptions.Center };
     readonly Label _in = Pill("IN 0", "#F3E8FF", "#7E22CE"), _out = Pill("OUT 0", "#FEE2E2", "#B91C1C");
@@ -187,7 +187,7 @@ public sealed class EntryPage : ContentPage
     {
         var isDate = _p.DateCols.Contains(f.Col);
         string text = _sel is null ? "" : f.Col == _p.DelayCol ? _sel.DelayText(_p) : isDate ? Dates.Show(_sel.Get(f.Col)) : _sel.Get(f.Col);
-        var box = new Entry { Text = text, FontSize = 13, TextColor = Ink, IsReadOnly = true, BackgroundColor = Soft, Placeholder = isDate ? "d-MMM-yy" : "", AutoCapitalize = false };
+        var box = new Entry { Text = text, FontSize = 13, TextColor = Ink, IsReadOnly = true, BackgroundColor = Soft, Placeholder = isDate ? "d-MMM-yy" : "", Keyboard = Keyboard.Plain };
         _boxes[f.Col] = box;
         var color = f.Col == _p.RefCol ? Color.FromArgb("#DC2626") : f.Col == _p.RefWtcoCol ? Color.FromArgb("#9333EA") : Muted;
         return new VerticalStackLayout { Spacing = 2, Children = { new Label { Text = f.Label, FontSize = 10, TextColor = color }, box } };

@@ -7,7 +7,7 @@ namespace WtrMobile.Views;
 public sealed class LoginPage : ContentPage
 {
     static readonly Color Bg = Color.FromArgb("#0F2A33"), Teal = Color.FromArgb("#4FD1C5"), Soft = Color.FromArgb("#CBD5E1");
-    readonly Entry _user = new() { Placeholder = "User", TextColor = Colors.White, PlaceholderColor = Soft, AutoCapitalize = false };
+    readonly Entry _user = new() { Placeholder = "User", TextColor = Colors.White, PlaceholderColor = Soft, Keyboard = Keyboard.Plain };
     readonly Entry _pw = new() { Placeholder = "Password", IsPassword = true, TextColor = Colors.White, PlaceholderColor = Soft };
     readonly CheckBox _show = new() { Color = Teal };
     readonly Label _msg = new() { TextColor = Color.FromArgb("#FCA5A5"), FontSize = 13, MinimumHeightRequest = 18 };

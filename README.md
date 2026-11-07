@@ -2,8 +2,8 @@
 
 1. Supabase: run supabase/schema.sql, add the users (see the end of that file), then `python tools/sync_documents.py <path to data_store.db>`.
 2. Put your Project URL and anon key in Config.cs.
-3. On the PC (Visual Studio 2022 with ".NET Multi-platform App UI development", or `dotnet workload install maui-android`):
-   `dotnet publish -f net8.0-android -c Release`  -> the .apk is under bin/Release/net8.0-android/publish (or Build > Archive in Visual Studio).
+3. On the PC (Visual Studio 2026 (or 2022 17.14+) with ".NET Multi-platform App UI development", or `dotnet workload install maui-android`):
+   `dotnet publish -f net10.0-android -c Release`  -> the .apk is under bin/Release/net10.0-android/publish (or Build > Archive in Visual Studio).
    Copy the .apk to the phone and open it (allow "install unknown apps").
 
 ## Build on GitHub (no Visual Studio needed)
